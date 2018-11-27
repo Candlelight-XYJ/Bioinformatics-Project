@@ -1,2 +1,2 @@
-# Next-Generation-Sequencing-pipline
+# Next-Generation-Sequencing-pipeline
 NGS 
