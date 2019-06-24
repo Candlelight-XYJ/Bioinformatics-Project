@@ -28,24 +28,31 @@
 
 #### Hardy-Weinberg Equilibrium 哈迪温伯格平衡
 + 定义：“哈迪-温伯格定律”是指在理想状态下，各等位基因的频率和等位基因的基因型频率在遗传中是稳定不变的，即保持着基因平衡
+
 </br>
+
 + 实现HWE定律需要 **`满足几个条件`** ：
   + Large population size（种群足够大）
   + Random mating（种群的个体间随机交配）
   + No mutations（没有突变）
   + No natural selection（没有自然选择）
   + No migration（没有迁移）
+
 </br>
+
 + HWE中各基因频率和各基因型存在如下等式关系，且保持不变：
   + 设基因型Aa中，A的基因频率是p, a的基因频率是q 
   + **`p+q=1, 且 p^2 +2pq + q^2 = 1`**
+
 </br>
+
 + 几个影响哈迪温伯格平衡定律的因素
   + Genetic drift (遗传漂变)
   + Mutation (突变)
   + Natural selection （自然选择）
   + Non-random mating (非随机交配)
   + Gene flow (基因流动)
+  
 </br>
 
 **`需要注意的是：`** 尽管这些点会影响哈迪文伯格定律，但是大多数情况下，哈迪文伯格平衡是不受影响的一个不遵循哈迪巍峨伯格平衡的群体经过一代自由交配后，第二代会变成平衡的(这个是可证明的，练习题中有R 脚本证明)
@@ -76,16 +83,16 @@
   + **`Phenotype (P) = Genotype (G) + Environment (E)`**
   + **`Var(P) = Var(G) + Var(E) + 2 Cov(G,E)`**
 + 表型方差的组成
-[!phenovar](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part2_Basic_genetics/pic/1-phenoVar.png)
+![phenovar](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part2_Basic_genetics/pic/1-phenoVar.png)
 
 + 广义遗传力
-[!broadHT](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part2_Basic_genetics/pic/2-broadHeritability.png)
+![broadHT](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part2_Basic_genetics/pic/2-broadHeritability.png)
 
 + 狭义遗传力
-[!narrowHT](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part2_Basic_genetics/pic/3-narrowHeritability.png)
+![narrowHT](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part2_Basic_genetics/pic/3-narrowHeritability.png)
 
 + 一些容易误解的概念
-[!missingConcept](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part2_Basic_genetics/pic/4-missingConcept.png)
+![missingConcept](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part2_Basic_genetics/pic/4-missingConcept.png)
 
 </br>
 
