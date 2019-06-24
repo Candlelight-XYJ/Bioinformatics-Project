@@ -1,3 +1,5 @@
+## 【目录】
+
 #### 1. 人群大队列的基本概念
 + 1.1 队列研究
 + 1.2 队列研究中常见的参数定义
@@ -22,6 +24,8 @@
   + 3.4.4 对遗传关联显著性的解读
 + 3.5 GWAS中存在的问题
 
+
+---
 
 ## 1. 人群大队列的基本概念
 #### 1.1 队列研究
@@ -61,6 +65,7 @@ Odds ratio(比值比):  **在病例对照研究中**，比值比（OR）指  病
 **对于罕见疾病risk ratio 和 odd ratio 是近似相等的**
 
 + **例子**
+
 ![RS_OS](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part3_Association_study%20and%20Meta_analysis/picAssoc/1-RS_OS.png)
 
 
