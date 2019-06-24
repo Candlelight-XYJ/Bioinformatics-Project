@@ -78,9 +78,20 @@ pheatmap(LD, color = gray(100:0/100), cluster_rows = F, cluster_cols = F, labels
 #### 2.2 Conditional analysis 条件分析
 > 参考文献：Conditional and joint multiple-SNP analysis of GWAS summary statistics identifies additional variants influencing complex traits
 
+**理解条件分析的原理和步骤**
+> + http://felixfan.github.io/condition-VS-interaction/
+> + https://www.cnblogs.com/chenwenyan/p/10278893.html
+
 
 GWAS结果中会有许多显著的信号，假设某个区域内，SNP位点 rsA 和 rsB都与某表型显著相关，已经确定rsA对表型是有影响效应的了，那么，rsB位点与表型的显著关联是它真的有独立效应，还是说由于它和rsA 高度连锁不平衡 而产生的假阳性的显著关联呢？
 此时，我们就需要用 **`条件分析`** 来检测rsB位点是否对表型有独立的影响效应
+
++ **`条件分析的原理是这样的`**
+假设现在经过第一轮关联分析后，我们发现rs002 和rs001 与表型的关联性都很高，为了排除连锁不平衡所产生的假阳性，想测试 rs002 SNP 对表型产生的效应是否独立于 rs001 SNP，那么首先构建以下这个模型：
+**Y = b0 + b1.rs002 + b2.rs001**
++ 我们想要测试的 **rs002作为自变量** ，**rs001作为协变量** 共同构建一个回归模型，b0,b1,b2代表各SNP的效应剂量(0,1,2， 例如假设B是效应allele, 那么 基因型BB的效应剂量就是2，基因型AB的效应剂量就是１，AA则是０)　
++ 若回归模型最后计算出的结果显示 rs002的 **`P值`** 仍然小于0.05，那么可以认为rs002确实对表型有独立效应
+
 ```r
 ## read data
 df <- read.csv("conditional_analysis.csv")
