@@ -1,16 +1,33 @@
-[toc]
+
 
 # Meta analysis 荟萃分析
 > 参考阅读文献：https://link.springer.com/book/10.1007/978-3-319-21416-0
+
+## 【目录】
+
+#### 1. 简介
+#### 2. Meta分析常用方法
++ 2.1 固定效应模型的Meta分析
++ 2.2 Meta分析示例练习：使用Inverse variance based approach完成Meta分析
++ 2.4 随机效应模型的Meta分析
++ 2.5 Meta分析的软件包比较
+
+
 
 ## 1. 简介
   单个群体的GWAS研究由于样本量限制，在解释遗传效应的时候可能不是那么的完善，因此我们就需要整合其它GWAS研究的结果，来补充完善我们自己的研究结论。
   整合其它GWAS研究结果有两种方式：
 + （1）直接从原始研究数据开始整合。我们把其它GWAS研究的原始SNP，表型等数据拿到，和我们自己的数据结合，做全基因组关联分析，来看结果情况，但是这样做的缺点是太麻烦了 
 + （2）直接从统计结果开始整合。使用一定的统计策略，将相关的多个GWAS研究的统计结果整合，来说明某个位点和表型的疾病相关性，这种直接从统计结果开始整合的研究方法就是Meta分析（不用再做一次GWAS了）
-＋Meta分析流程
+
++ Meta分析流程
+![metaAnalysis_workflow](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part3_Association_study%20and%20Meta_analysis/picMeta/1-metaAnalysis_workflow.jpg)
+
 
 ## 2. Meta分析常用方法
+
+![common_methods](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part3_Association_study%20and%20Meta_analysis/picMeta/2-common_methods.jpg)
+
 
 #### 2.1 固定效应模型的Meta分析
 > https://link.springer.com/chapter/10.1007%2F978-3-319-21416-0_2
@@ -19,10 +36,12 @@
 + 常用的计算模型有：（1）Inverse variance based approach【 **`最常使用`** 】（2）Cochran–Mantel–Haenszel approach
 + **`Inverse variance based approach`** 计算模型的详细公式
 
-
+![model](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part3_Association_study%20and%20Meta_analysis/picMeta/3-model.png)
 
 #### 2.2 Meta分析示例练习：使用Inverse variance based approach完成Meta分析
 **`Inverse variance based approach`** 这个方法的计算公式已经列出来了：
+
+![model](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part3_Association_study%20and%20Meta_analysis/picMeta/3-model.png)
 
 + 第一步， 收集不同GWAS研究中的 **`Beta值`** (snp在样本中的效应) 和 **`se(stand error)`**
 + 第二步，根据以上表格中第二行的公式计算得到 - **`整合多个研究的新的β值`** 和 **`整合多个研究的新的SE值`**
@@ -82,8 +101,8 @@ head(meta)
 
 #### 2.4 随机效应模型的Meta分析
 
-
+![randomEffects](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part3_Association_study%20and%20Meta_analysis/picMeta/4-randomEffects.png)
 
 #### 2.5 Meta分析的软件包比较
 
-
+![metaSoftware](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part3_Association_study%20and%20Meta_analysis/picMeta/5-MetaSoftware.png)
