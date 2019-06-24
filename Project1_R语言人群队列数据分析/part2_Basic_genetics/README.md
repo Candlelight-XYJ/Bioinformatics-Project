@@ -76,26 +76,27 @@
   + **`Phenotype (P) = Genotype (G) + Environment (E)`**
   + **`Var(P) = Var(G) + Var(E) + 2 Cov(G,E)`**
 + 表型方差的组成
-
+[!phenovar](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part2_Basic_genetics/pic/1-phenoVar.png)
 
 + 广义遗传力
-
+[!broadHT](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part2_Basic_genetics/pic/2-broadHeritability.png)
 
 + 狭义遗传力
+[!narrowHT](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part2_Basic_genetics/pic/3-narrowHeritability.png)
 
 + 一些容易误解的概念
-
+[!missingConcept](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part2_Basic_genetics/pic/4-missingConcept.png)
 
 </br>
+
 + 估计遗传力的方法
   + 相关性/回归的方法：（1）父母-子代回归 （2）近亲比较 （3）双胞胎研究 （详细解释）
   + 方差分析的方法：（1）ANOVA
   + 线性混合模型：（1）基于家系的研究 （2）基于SNP的研究
 
 
-
-
 ---
+
 ## 练习题
 #### 使用R语言计算等位基因和基因型的频率
 
