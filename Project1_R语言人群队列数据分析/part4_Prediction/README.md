@@ -1,6 +1,20 @@
-[toc]
+## 【目录】
 
+#### 1. PCA 校验数据的群体结构
+#### 2. 独立效应的SNP信号检测
++ 2.1 练习-检测区间内的SNP独立信号
++ 2.2 Conditional analysis 条件分析
++ 2.3 SNP效应
+#### 3. 表型预测
++ 3.1 SNP Selection 选择与表型相关的SNPs
++ 3.2 建立预测模型
++ 3.3 评估预测准确度
+#### 4. PRS 多基因风险评分
++ 4.1 PRS流程
++ 4.2 一些Notes以及影响因素
++ 4.3 PRS的常用软件
 
+---
 
 ## 1. PCA 校验数据的群体结构
 
@@ -12,12 +26,18 @@
 
 是把自带样本和sample样本 放在同一个坐标系下，看PCA情况，可以看到我们的自带样本和东亚人群的sample重合
 
+---
+
 ## 2. 独立效应的SNP信号检测
+
+![1](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part4_Prediction/pic/1.png)
 
 通过GWAS研究，我们可以得到曼哈顿图。从图中我们可以看出有多少位点与outcome相关（过P阈值）。但是并不是所有过阈值的点都是独立与outcome相关。如何寻找真正的causal SNPs 是接下来需要解决的问题。
 
 
 #### 2.1 练习-检测区间内的SNP独立信号
+
+![2](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part4_Prediction/pic/2.png)
 
 大样本得出的GWAS，会有很多信号，很多snp， 在这个区域到底哪些snp真正有独立效应-对表型有关呢？ 这后续就需要筛选
 + 首先使用R语言来练习绘制SNP局部图(上图)，并标明最显著的SNP
@@ -82,6 +102,7 @@ pheatmap(LD, color = gray(100:0/100), cluster_rows = F, cluster_cols = F, labels
 > + http://felixfan.github.io/condition-VS-interaction/
 > + https://www.cnblogs.com/chenwenyan/p/10278893.html
 
+![conditionalAnalysis](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part4_Prediction/pic/3-conditionAnalysis.png)
 
 GWAS结果中会有许多显著的信号，假设某个区域内，SNP位点 rsA 和 rsB都与某表型显著相关，已经确定rsA对表型是有影响效应的了，那么，rsB位点与表型的显著关联是它真的有独立效应，还是说由于它和rsA 高度连锁不平衡 而产生的假阳性的显著关联呢？
 此时，我们就需要用 **`条件分析`** 来检测rsB位点是否对表型有独立的影响效应
@@ -137,18 +158,27 @@ sum(pvalue < 0.05)
 #### 2.3 SNP效应
 genotype - 理解为1个snp (AA,AB,BB) ，每增加一个B，allele 对表型增加/降低 一个效应
 
+---
+
 ## 3. 表型预测
 得到GWAS的显著关联的SNPs结果后，我们可以用这些结果来做多基因疾病的风险评估，以及其它复杂性状的预测
+
+![predictPipeline](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part4_Prediction/pic/4-pipelineforpredict.png)
 
 **`注意`** 
 + 做预测的时候我们的四个队列数据都是独立不同的（用于GWAS 的样本是不能用于预测分析的 ）
 + 预测模型的训练集/测试集是最好都是要独立的（但很多时候测试集可能做不到独立，可以通过交叉验证从训练集中取，但是 **训练集一定要独立** ）
 + 表型预测流程图
 
+![pipeline](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part4_Prediction/pic/5-pipeline.png)
 
 #### 3.1 SNP Selection  选择与表型相关的SNPs
 
+![snpSelect](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part4_Prediction/pic/6-snpSelection.png)
+
 + 选择SNP的方法
+
+![snpSelectMethods](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part4_Prediction/pic/7-methodforsnpSelect.png)
 
 
 #### 3.2 建立预测模型
@@ -159,8 +189,11 @@ genotype - 理解为1个snp (AA,AB,BB) ，每增加一个B，allele 对表型增
 
 建模的时候，用前人做过的GWAS报道的snp Beta/ P/ SE值来用就行 ，也可以用自己的研究中的结果来作为参数输入模型
 
+![model](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part4_Prediction/pic/8-model.png)
+
 
 + **`代码示例-连续表型-线性回归做预测`**
+
 ```r
 # read data and selected predictors
 
@@ -194,8 +227,6 @@ pred1 <- predict(fit1, newdata = test) #predict是函数
 
 head(pred1)
 
-
-
 cor(pred1,test$y1)^2  # 查看预测表型和实际表型直接的相关性（加了平方的这个是一个表型方差）解释表型方差 来看预测是否准确。如果是100% 说明模型很好
 
 plot(pred1,test$y1)
@@ -228,10 +259,19 @@ head(pred2)
 对于不同类型的表型，我们可以使用相应的方法去评估表型预测的准确度
 常见的有 **`MAD`** , **`ROC`** ,   **`AUC`** ， **`Sensitivity`** 和 **`Specificity`**
 
+![predict_accuracy](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part4_Prediction/pic/9-prediction_accuracy.png)
+
 + 以binary表型为例，各评估指标的计算方法如下
 
+![a1](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part4_Prediction/pic/10-assessment1.png)
+
+
+![a2](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part4_Prediction/pic/10-assessment1.png)
 
 + PPV和NPV是横向维度
+
+![ROC](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part4_Prediction/pic/11-ROC.png)
+
 
 + **示例- 计算sensitivity 和 specificity **
 ```r
@@ -287,24 +327,33 @@ spec1 <- confm[1, 1]/sum(confm[, 1])
 
 ```
 
+![p1](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part4_Prediction/pic/12-p1.png)
+
+![p2](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part4_Prediction/pic/13-p2.png)
 
 
 **`注`** ： **用proc包可以直接计算ROC,AUC**
 
+---
+
 ## 4. PRS 多基因风险评分
 PRS的结果情况和GWAS结果的参数紧密相连，它的输入可以是已有的，其它GWAS研究所得到的参数值，不需要我们自己去做个GWAS 。
 
-
-
 #### 4.1 PRS流程
 
+![PRSpipeline](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part4_Prediction/pic/15-PRSpipeline.png)
 
 #### 4.2 一些Notes以及影响因素
 
+![note1](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part4_Prediction/pic/16-note1.png)
 
+![note2](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part4_Prediction/pic/16-note2.png)
 
+![factors](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part4_Prediction/pic/17-factors.png)
 
 #### 4.3 PRS的常用软件
 + **`PRSice`** 是最常用的软件包
 
+![PRSsoft](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part4_Prediction/pic/18-PRSsoft.png)
 
+![prs](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part4_Prediction/pic/19-prs.png)
