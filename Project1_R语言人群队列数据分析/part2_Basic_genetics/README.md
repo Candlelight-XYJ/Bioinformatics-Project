@@ -52,7 +52,7 @@
   + Natural selection （自然选择）
   + Non-random mating (非随机交配)
   + Gene flow (基因流动)
-  
+
 </br>
 
 **`需要注意的是：`** 尽管这些点会影响哈迪文伯格定律，但是大多数情况下，哈迪文伯格平衡是不受影响的一个不遵循哈迪巍峨伯格平衡的群体经过一代自由交配后，第二代会变成平衡的(这个是可证明的，练习题中有R 脚本证明)
@@ -67,12 +67,16 @@
 + 定义
   + 连锁平衡：如果两个位点处于连锁平衡状态，说明它们在每一代中都是完全独立遗传的。那么AB单倍型的频率P(AB) = P(A) * P(B)
   + 连锁不平衡：指在某一个群体中，不同座位上两个基因同时遗传的频率明显高于预期的随机频率的现象。D(AB) = P(AB) - P(A) * P(B)
+
 </br>
+
 + 连锁不平衡的原理
   + The mixing time of two original populations was insufficient to produce complete randomization
   + Two mutations are too close to be separated through recombination
   + Some alleles in linkage are advantage in selection
+
 </br>
+
 + R语言绘制连锁不平衡图
 一块一块的就是连锁，颜色越深 连锁越强
 
@@ -82,16 +86,21 @@
   + 度量遗传对表型的贡献程度
   + **`Phenotype (P) = Genotype (G) + Environment (E)`**
   + **`Var(P) = Var(G) + Var(E) + 2 Cov(G,E)`**
+
 + 表型方差的组成
+
 ![phenovar](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part2_Basic_genetics/pic/1-phenoVar.png)
 
 + 广义遗传力
+
 ![broadHT](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part2_Basic_genetics/pic/2-broadHeritability.png)
 
 + 狭义遗传力
+
 ![narrowHT](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part2_Basic_genetics/pic/3-narrowHeritability.png)
 
 + 一些容易误解的概念
+
 ![missingConcept](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part2_Basic_genetics/pic/4-missingConcept.png)
 
 </br>

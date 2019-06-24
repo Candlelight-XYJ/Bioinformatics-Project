@@ -1,4 +1,27 @@
-[toc]
+#### 1. 人群大队列的基本概念
++ 1.1 队列研究
++ 1.2 队列研究中常见的参数定义
++ 1.3 队列分类
+
+#### 2. 基因遗传关联性研究 （Genetic association studies）
++ 2.1 单个SNP的关联研究
+  + 2.1.1 针对离散表型
+  + 2.1.2 针对数量性状
++ 2.2 多个SNP的关联研究
+  + 2.2.1 离散表型
+  + 2.2.2 数量性状
+
+#### 3. Genome-wide association study 全基因组关联分析
++ 3.1 对离散表型/连续性状的关联分析
++ 3.2 GWAS数据的质量控制
++ 3.3 研究设计
++ 3.4 GWAS结果解释
+  + 3.4.1 Manhattan plot 曼哈顿图
+  + 3.4.2 QQ(Quantile-quantile plot )分位图
+  + 3.4.3 Regional Manhattan Plot & Haploview 局部曼哈顿图
+  + 3.4.4 对遗传关联显著性的解读
++ 3.5 GWAS中存在的问题
+
 
 ## 1. 人群大队列的基本概念
 #### 1.1 队列研究
@@ -38,23 +61,29 @@ Odds ratio(比值比):  **在病例对照研究中**，比值比（OR）指  病
 **对于罕见疾病risk ratio 和 odd ratio 是近似相等的**
 
 + **例子**
-
+![RS_OS](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part3_Association_study%20and%20Meta_analysis/picAssoc/1-RS_OS.png)
 
 
 #### 1.3 队列分类
 + 根据选择标准分类
   + 出生队列
   + 暴露队列
+
 </br>
+
 + 根据队列中研究对象入选的时间分类
   + 固定队列
   + 动态队列
+
 </br>
+
 + 根据实验设计分类
   + 病例-对照 队列
   + 前瞻性队列
   + 回顾性队列：回顾性队列研究的研究对象是根据其在过去某时点的特征或暴露情况而入选并分组的，然后从已有的记录中追溯从那时开始到其后某一时点或直到研究当时为止这一期间内，每一成员的死亡或发病情况
+
 </br>
+
 + 队列研究中常见的偏差
   + Selection Bias
   + Loss to follow-up Bias
@@ -70,6 +99,8 @@ Odds ratio(比值比):  **在病例对照研究中**，比值比（OR）指  病
 
 ## 2. 基因遗传关联性研究 （Genetic association studies）
 
+![associationStudy](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part3_Association_study%20and%20Meta_analysis/picAssoc/2-associationStudy.png)
+
 + 基因关联研究
 
   + 检验表型或疾病状况与遗传变异之间的相关性
@@ -82,14 +113,18 @@ Odds ratio(比值比):  **在病例对照研究中**，比值比（OR）指  病
 
   + 单个核苷酸的变异
 
-  + 包括插入、删除、转换和转换。
+  + 包括插入、删除、转换和转换
 
 SNPs是关联研究中广泛用于检测的标记物，关联研究中使用字母字符(a,b,c ...)或数字(0,1,2)来表示snp展现的基因型
+
+![snp_coding](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part3_Association_study%20and%20Meta_analysis/picAssoc/3-snp_coding.png)
 
 
 #### 2.1 单个SNP的关联研究
 ##### 2.1.1 **针对离散表型**
 对于离散的表型，我们使用logistic回归来计算SNP与表型性状的关联性
+
+![logistic](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part3_Association_study%20and%20Meta_analysis/picAssoc/4-logistic.png)
 
 + 示例,计算SNP `rs367896724` 与disease的关联性
 ```r
@@ -131,8 +166,12 @@ OR <- exp(s$coefficient[2, 1])
 ##### 2.1.2 **针对数量性状**
 数量性状(例如身高，血压)使用线性回归，来做单个SNP的关联分析
 
+![continuous](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part3_Association_study%20and%20Meta_analysis/picAssoc/5-continuous.png)
+
 β1代表SNP对数量性状的影响
+
 + 示例
+
 ```r
 ###################
 ## Quantitative traits ##
@@ -152,6 +191,8 @@ s$coefficient[2, 1]
 #### 2.2 多个SNP的关联研究
 ##### 2.2.1 离散表型
 针对离散表型，使用多元逻辑回归来做关联分析
+
+![multiple_logistic](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part3_Association_study%20and%20Meta_analysis/picAssoc/6-multiple_logistic.png)
 
 β0，β1，β2 ... βm 代表每个SNP对风险易感因素的影响效应 （也可以视作权重）
 
@@ -185,6 +226,8 @@ OR
 
 ##### 2.2.2 数量性状
 针对数量性状，使用多元线性回归来做关联分析
+
+![multiple_continuous](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part3_Association_study%20and%20Meta_analysis/picAssoc/7-multiple_continuous.png)
 
 + 示例，3个SNP和身高的相关性分析
 ```r
@@ -295,12 +338,15 @@ head(assocResult)
  > 参考：https://www.jianshu.com/p/987859ae503c  如何理解GWAS中Manhattan plot和QQ plot所传递的信息
 ##### 3.4.1 Manhattan plot 曼哈顿图
 
+![manhattan](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part3_Association_study%20and%20Meta_analysis/picAssoc/8-manhattan.jpg)
+
 + 根据每个SNP的染色体位置和 -log10p值，绘制与其关联的图
 + 红线表示全基因组层面的显著性阈值(P=5e-8)
 + 蓝线表示有意义的阈值(P=1e-5)
 
 ##### 3.4.2 QQ(Quantile-quantile plot )分位图
 
+![qqnorm](https://github.com/Candlelight-XYJ/Bioinformatics-Project/blob/master/Project1_R%E8%AF%AD%E8%A8%80%E4%BA%BA%E7%BE%A4%E9%98%9F%E5%88%97%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/part3_Association_study%20and%20Meta_analysis/picAssoc/9-qqnorm.jpg)
 
 + QQ图应该前面是个直线，后面再飘起来，这样比较好，说明研究的SNP和表型有关（如上图所示）；如果QQ图从前面就开始飘，那么数据群体结构可能有问题，要再看看数据分布情况
 + **`例如下面这张图就是有问题的，需要进行数据结构的矫正`**
