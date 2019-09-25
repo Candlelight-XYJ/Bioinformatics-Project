@@ -1,17 +1,18 @@
 [toc]
 
 ##  Introduction to data format
-
-CHROM：染色体编号
-POS：检测的SNP位点在基因组上的位置
-ID： SNP的rsID
-REF：野生基因型(如果ref发生了突变，说明这个人这个位点有变异，如果基因型
-和ref一致，那么针对参考基因组而言，这个人没有这个snp突变，就没有这种病
-的风险)
-CHIA-3：基因型 
+果壳那边可以直接出 **`.PED`** 和 **`.MAP`** 格式的数据，所以对于我们下游处理来说更加方便了
+![图]()
 
 #### 关于质控
 从果壳拿到的数据已经经过了质控，因此我们直接进行下一步的基因型数据填充即可
+
+#### 数据格式转换
++ 果壳提供.PED/ .MAP 格式的文件， （如果是VCF，需要用VCF tools转换成 plink的输入数据格式），所以现在直接使用 **`Gtools`** 将Plink格式的文件转为 **`IMPUTES2`** 的输入文件
+
+```shell
+gtool -P --ped test.ped --map test.map --og out.gen --os out.sample
+```
 
 ---
 
@@ -28,16 +29,27 @@ trios phasing分为两类：有家系数据和没有家系数据
 由于目前也没有东亚人群的数据库，暂定 *HapMap* 和 *1000 Genomes*的数据作为reference population
 
 + **`使用IMPUTES2完成phasing`**
+
 ```bash
+## 使用IMPUTE2进行phasing
 # imputes2的phase选项可用于完成phasing
 # Example
 ./impute2 \
- -phase \
- -m ./Example/example.chr22.map \
- -g ./Example/example.chr22.study.gens \
- -int 20.4e6 20.5e6 \
- -Ne 20000 \
- -o ./Example/example.chr22.phasing.impute2
+-phase \
+-m data/test.map \
+-g data/test.gen \
+-int 20.4e6 20.5e6 \
+-Ne 20000 \
+-o data/test.phasing.impute2
+```
++ 输出结果
+```shell
+test.phasing.impute2_info_by_sample
+test.phasing.impute2_summary
+test.phasing.impute2_haps 
+test.phasing.impute2_warnings
+test.phasing.impute2_haps_confidence
+test.phasing.impute2_info
 ```
 
 ---
@@ -48,15 +60,22 @@ trios phasing分为两类：有家系数据和没有家系数据
 ```bash
 # Example
 ./impute2 \
- -m ./Example/example.chr22.map \
- -h ./Example/example.chr22.1kG.haps \
- -l ./Example/example.chr22.1kG.legend \
- -g ./Example/example.chr22.study.gens \
- -strand_g ./Example/example.chr22.study.strand \
- -int 20.4e6 20.5e6 \
- -Ne 20000 \
- -o ./Example/example.chr22.one.phased.impute2
+-use_prephased_g \
+-m data/test.map \
+-h  ALL_1000G_phase.haps \
+-l ALL_1000G_phase.legend \
+-known_haps_g data/test.phasing.impute2_haps \
+-int 0 50000 \
+-Ne 20000 \
+-o data/imputated_result \
 ```
++ **`-use_prephased_g`**  使用phased得到的数据来做Imputation
++ **`m`** 我们之前的 .map文件
++ **`h`** 参考基因集的单倍体型文件
++ **`l`**  参考基因集的单体型文件对应的Legend文件，保存的是对每个SNP位点的描述信息
++ **`known_haps_g`** pre-phase环节得到的单体型文件
++ **`int`** 指定滑动窗口填补的碱基对位置的上下区间 
++ **`Ne`**
 
 IMPUTES可以完成多个种类的imputation工作，具体使用指南可以参考：[IMPUTES2手册](https://mathgen.stats.ox.ac.uk/impute/impute_v2.html#examples)
 
